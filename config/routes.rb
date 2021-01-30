@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   root 'lessons#index'
   resources :lessons, only: :index do
+    collection do
+      get :reserved
+    end
     resource :reservation, only: :create
   end
   resources :products, only: :index do

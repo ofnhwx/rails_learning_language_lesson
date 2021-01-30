@@ -9,6 +9,7 @@
       #navbar.collapse.navbar-collapse
         %ul.navbar-nav.ml-auto
           - if user_signed_in?
+            %li.nav-item= active_link_to '予約一覧', reserved_lessons_path, class: 'nav-link'
             %li.nav-item= active_link_to 'チケット購入', products_path, class: 'nav-link'
             %li.nav-item= active_link_to 'ログアウト', destroy_user_session_path, class: 'nav-link', method: :delete
           - else

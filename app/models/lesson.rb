@@ -2,9 +2,9 @@ class Lesson < ApplicationRecord
   belongs_to :teacher
   belongs_to :language
 
-  has_many :reservations
+  has_one :reservation
 
-  scope :reservable, -> { left_joins(:reservations).where(reservations: { id: nil }) }
+  scope :reservable, -> { left_joins(:reservation).where(reservation: { id: nil }) }
   scope :default_order, -> { order(started_at: :asc, id: :asc) }
 
   validates :started_at, presence: true, uniqueness: { scope: :teacher }
