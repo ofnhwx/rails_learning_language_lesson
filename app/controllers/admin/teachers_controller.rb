@@ -45,7 +45,12 @@ class Admin::TeachersController < Admin::ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher)
-          .permit(:image, :name, :profile, :email, :password, :password_confirmation, language_ids: [])
+    result = params.require(:teacher)
+                   .permit(:image, :name, :profile, :email, :password, :password_confirmation, language_ids: [])
+    if result[:password].blank? && result[:password_confirmation].blank?
+      result.delete(:password)
+      result.delete(:password_confirmation)
+    end
+    result
   end
 end

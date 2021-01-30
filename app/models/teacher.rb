@@ -11,4 +11,5 @@ class Teacher < ApplicationRecord
   scope :default_order, -> { order(name: :asc, id: :asc) }
 
   validates :name, presence: true
+  validates :language_ids, presence: true
 end

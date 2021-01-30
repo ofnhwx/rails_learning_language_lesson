@@ -2,6 +2,7 @@
   %thead
     %tr
       %th 開始
+      %th 時間
       %th 言語
       %th Zoom URL
       %th 予約
@@ -9,7 +10,8 @@
   %tbody
     - @lessons.each do |lesson|
       %tr
-        %td= l(lesson.started_at)
+        %td= l(lesson.started_at, format: :lesson)
+        %td #{lesson.duration_minutes} 分
         %td= lesson.language.name
         %td= link_to lesson.zoom_url, lesson.zoom_url, target: '_blank', rel: 'noopener'
         %td= lesson.reservation.blank? ? 'なし' : 'あり'

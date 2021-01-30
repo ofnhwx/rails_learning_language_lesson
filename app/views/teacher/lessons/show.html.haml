@@ -5,7 +5,10 @@
       %td= @lesson.language.name
     %tr.started_at
       %th 開始
-      %td= l(@lesson.started_at)
+      %td= l(@lesson.started_at, format: :lesson)
+    %tr.duration_minutes
+      %th 時間(分)
+      %td #{@lesson.duration_minutes} 分
     %tr.zoom_url
       %th Zoom URL
       %td= link_to @lesson.zoom_url, @lesson.zoom_url, target: '_blank', rel: 'noopener'

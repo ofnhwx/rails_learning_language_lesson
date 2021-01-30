@@ -1,0 +1,20 @@
+%p #{@reservation.teacher.name} 様
+
+%p
+  ご利用ありがとうございます。
+  %br/
+  レッスンが予約されましたのでご案内いたします。
+  %br/
+  開始時刻になりましたら Zoom の URL にアクセスしてください。
+
+%table
+  %tbody
+    %tr
+      %td 生徒
+      %td= @reservation.user.name
+    %tr
+      %td 予約時刻
+      %td= l(@reservation.lesson.started_at, format: :lesson)
+    %tr
+      %td Zoom の URL
+      %td= link_to @reservation.lesson.zoom_url, @reservation.lesson.zoom_url, target: '_blank', rel: 'noopener'

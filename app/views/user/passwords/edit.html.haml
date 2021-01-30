@@ -1,0 +1,14 @@
+.card.mt-2
+  .card-header
+    パスワードの変更
+  .card-body
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      .form-inputs
+        = f.input :password, label: '新しいパスワード', required: true, autofocus: true, input_html: { autocomplete: 'new-password' },
+                  hint: ("#{@minimum_password_length}文字以上で入力してください" if @minimum_password_length)
+        = f.input :password_confirmation, label: '新しいパスワードの確認', required: true, input_html: { autocomplete: 'new-password' }
+      .form-actions
+        = f.button :submit, 'パスワードを変更する', class: 'btn btn-primary btn-block'
+  = render 'user/shared/links'

@@ -15,6 +15,7 @@ ja:
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
+        name: 名前
         password: パスワード
         password_confirmation: パスワード（確認用）
         remember_created_at: ログイン記憶時刻
@@ -25,8 +26,16 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      admin: *user
+      teacher:
+        <<: *user
+        image: プロフィール画像
+        profile: プロフィール
+        languages: 教えられる言語
     models:
       user: ユーザ
+      admin: 管理者
+      teacher: 講師
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

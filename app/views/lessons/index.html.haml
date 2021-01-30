@@ -9,22 +9,22 @@
   %thead
     %tr
       %th 開始
+      %th 時間
       %th 言語
       %th 講師
       %th
   %tbody
     - @lessons.each do |lesson|
       %tr
-        %td= l(lesson.started_at)
+        %td= l(lesson.started_at, format: :lesson)
+        %td #{lesson.duration_minutes} 分
         %td= lesson.language.name
         %td= lesson.teacher.name
         %td
           - if controller.action_name == 'reserved'
             - if lesson.finished?
               .btn.btn-secondary.disabled レッスン終了
-            - elsif lesson.started?
-              = link_to 'レッスンに参加', lesson.zoom_url, class: 'btn btn-primary'
             - else
-              .btn.btn-secondary.disabled レッスンに参加
+              = link_to lesson.zoom_url, lesson.zoom_url, target: '_blank', rel: 'noopener'
           - else
             = link_to '予約する', lesson_reservation_path(lesson), method: :post, class: 'btn btn-primary'

@@ -1,0 +1,10 @@
+.card.mt-2
+  .card-header
+    パスワードのリセット
+  .card-body
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      .form-inputs
+        = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' }
+      .form-actions
+        = f.button :submit, '送信', class: 'btn btn-primary btn-block'
+  = render 'user/shared/links'

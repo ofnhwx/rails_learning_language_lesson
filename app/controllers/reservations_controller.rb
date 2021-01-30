@@ -4,7 +4,9 @@ class ReservationsController < ApplicationController
   before_action :require_ticket
 
   def create
-    @lesson.create_reservation!(ticket: @ticket)
+    reservation = @lesson.create_reservation!(ticket: @ticket)
+    ReservationMailer.notify_to_user(reservation).deliver_later
+    ReservationMailer.notify_to_teacher(reservation).deliver_later
     redirect_to root_path, notice: 'レッスンを予約しました'
   end
 

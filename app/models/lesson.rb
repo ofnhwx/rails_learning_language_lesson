@@ -21,6 +21,10 @@ class Lesson < ApplicationRecord
     started_at.advance(hours: 1) > DateTime.current
   end
 
+  def duration_minutes
+    50
+  end
+
   private
 
   def discard_minutes
