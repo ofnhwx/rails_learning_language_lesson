@@ -1,0 +1,17 @@
+%table.table.teachers
+  %head
+    %tr
+      %th 名前
+      %th メールアドレス
+      %th 言語
+      %th アクション
+  %tbody
+    - @teachers.each do |teacher|
+      %tr
+        %td= teacher.name
+        %td= teacher.email
+        %td= teacher.display_languages
+        %td
+          = link_to '編集', edit_admins_teacher_path(teacher), class: 'btn btn-primary'
+          = link_to '削除', admins_teacher_path(teacher), class: 'btn btn-outline-danger', method: :delete, data: { confirm: "「#{teacher.name}」を削除しますか？" }
+= link_to '登録', new_admins_teacher_path, class: 'btn btn-primary'

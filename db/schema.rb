@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_013437) do
+ActiveRecord::Schema.define(version: 2021_01_30_025744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 2021_01_30_013437) do
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string "label", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["label"], name: "index_languages_on_label", unique: true
+    t.index ["name"], name: "index_languages_on_name", unique: true
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 2021_01_30_013437) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "label", null: false
+    t.string "name", null: false
     t.integer "price", null: false
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["label"], name: "index_products_on_label", unique: true
+    t.index ["name"], name: "index_products_on_name", unique: true
   end
 
   create_table "reservations", force: :cascade do |t|
