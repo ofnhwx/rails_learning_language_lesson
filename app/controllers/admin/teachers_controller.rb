@@ -1,5 +1,5 @@
 class Admin::TeachersController < Admin::ApplicationController
-  before_action :set_teacher, only: %i[edit update destroy]
+  before_action :set_teacher, only: %i[edit update destroy masquerade]
 
   def index
     @teachers = Teacher.default_order.decorate
@@ -31,6 +31,11 @@ class Admin::TeachersController < Admin::ApplicationController
   def destroy
     @teacher.destroy!
     redirect_to admin_teachers_path, notice: "講師「#{@teacher.name}」を削除しました"
+  end
+
+  def masquerade
+    bypass_sign_in(@teacher)
+    redirect_to teacher_root_path, notice: "「#{@teacher.name}」としてログインしました"
   end
 
   private

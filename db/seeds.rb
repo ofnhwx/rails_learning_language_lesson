@@ -8,17 +8,17 @@ ActiveRecord::Base.transaction do
 
   Product.create!(
     [
-      { label: '1回分', price: 2000, amount: 1 },
-      { label: '3回分', price: 5000, amount: 3 },
-      { label: '5回分', price: 7500, amount: 5 }
+      { name: '1回分', price: 2000, amount: 1 },
+      { name: '3回分', price: 5000, amount: 3 },
+      { name: '5回分', price: 7500, amount: 5 }
     ]
   )
 
   Language.create!(
     [
-      { label: '日本語' },
-      { label: '英語' },
-      { label: '中国語' }
+      { name: '日本語' },
+      { name: '英語' },
+      { name: '中国語' }
     ]
   )
 end

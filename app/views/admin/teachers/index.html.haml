@@ -12,6 +12,7 @@
         %td= teacher.email
         %td= teacher.display_languages
         %td
+          = link_to 'ログイン', masquerade_admin_teacher_path(teacher), class: 'btn btn-warning', target: '_blank', rel: 'noopener'
           = link_to '編集', edit_admin_teacher_path(teacher), class: 'btn btn-primary'
           = link_to '削除', admin_teacher_path(teacher), class: 'btn btn-outline-danger', method: :delete, data: { confirm: "「#{teacher.name}」を削除しますか？" }
 = link_to '登録', new_admin_teacher_path, class: 'btn btn-primary'

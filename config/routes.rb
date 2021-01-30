@@ -27,7 +27,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'teachers#index'
-    resources :teachers, except: :show
+    resources :teachers, except: :show do
+      member do
+        get :masquerade
+      end
+    end
   end
 
   namespace :teacher do
