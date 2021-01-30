@@ -34,7 +34,7 @@ class CheckoutsController < ApplicationController
   end
 
   def success
-    redirect_to products_path, notice: 'チケットの購入しました'
+    redirect_to products_path, notice: 'チケットを購入しました'
   end
 
   def cancel

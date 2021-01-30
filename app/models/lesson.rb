@@ -12,6 +12,14 @@ class Lesson < ApplicationRecord
 
   before_validation :discard_minutes
 
+  def started?
+    started_at > DateTime.current
+  end
+
+  def finished?
+    started_at.advance(hours: 1) > DateTime.current
+  end
+
   private
 
   def discard_minutes

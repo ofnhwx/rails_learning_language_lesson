@@ -7,5 +7,6 @@ class LessonsController < ApplicationController
 
   def reserved
     @lessons = current_user.lessons.default_order
+    render :index
   end
 end

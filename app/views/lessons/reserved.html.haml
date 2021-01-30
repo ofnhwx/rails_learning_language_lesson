@@ -1,9 +1,0 @@
-.row.lessons
-  - @lessons.each do |lesson|
-    .col-6.lesson{ id: lesson.id }
-      .card.mt-3
-        .card-header= lesson.language.name
-        .card-body
-          .card-text 講師 #{lesson.teacher.name}
-          .card-text 日時 #{l(lesson.started_at)}
-          = link_to 'レッスンに参加', lesson.zoom_url, class: 'btn btn-primary'
