@@ -1,4 +1,4 @@
-class Admins::TeachersController < Admins::ApplicationController
+class Admin::TeachersController < Admin::ApplicationController
   before_action :set_teacher, only: %i[edit update destroy]
 
   def index
@@ -12,7 +12,7 @@ class Admins::TeachersController < Admins::ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      redirect_to admins_teachers_path, notice: "講師「#{@teacher.name}」を登録しました"
+      redirect_to admin_teachers_path, notice: "講師「#{@teacher.name}」を登録しました"
     else
       render :new
     end
@@ -22,7 +22,7 @@ class Admins::TeachersController < Admins::ApplicationController
 
   def update
     if @teacher.update(teacher_params)
-      redirect_to admins_teachers_path, notice: "講師「#{@teacher.name}」を更新しました"
+      redirect_to admin_teachers_path, notice: "講師「#{@teacher.name}」を更新しました"
     else
       render :edit
     end
@@ -30,7 +30,7 @@ class Admins::TeachersController < Admins::ApplicationController
 
   def destroy
     @teacher.destroy!
-    redirect_to admins_teachers_path, notice: "講師「#{@teacher.name}」を削除しました"
+    redirect_to admin_teachers_path, notice: "講師「#{@teacher.name}」を削除しました"
   end
 
   private

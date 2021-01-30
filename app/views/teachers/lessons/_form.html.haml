@@ -1,6 +1,0 @@
-= simple_form_for [:teachers, lesson] do |f|
-  = f.association :language
-  = f.input :started_at
-  = f.input :zoom_url
-  = f.button :submit, class: 'btn btn-primary'
-  = link_to 'キャンセル', teachers_lessons_path, class: 'btn btn-outline-primary'

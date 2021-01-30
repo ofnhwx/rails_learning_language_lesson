@@ -1,4 +1,4 @@
-class Teachers::LessonsController < Teachers::ApplicationController
+class Teacher::LessonsController < Teacher::ApplicationController
   before_action :set_lesson, only: %i[show edit update destroy]
 
   def index
@@ -14,7 +14,7 @@ class Teachers::LessonsController < Teachers::ApplicationController
   def create
     @lesson = current_teacher.lessons.build(lesson_params)
     if @lesson.save
-      redirect_to teachers_lesson_path(@lesson), notice: 'レッスンを登録しました'
+      redirect_to teacher_lesson_path(@lesson), notice: 'レッスンを登録しました'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Teachers::LessonsController < Teachers::ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      redirect_to teachers_lesson_path(@lesson), notice: 'レッスンを更新しました'
+      redirect_to teacher_lesson_path(@lesson), notice: 'レッスンを更新しました'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Teachers::LessonsController < Teachers::ApplicationController
 
   def destroy
     @lesson.destroy!
-    redirect_to teachers_lessons_path, notice: 'レッスンを削除しました'
+    redirect_to teacher_lessons_path, notice: 'レッスンを削除しました'
   end
 
   private

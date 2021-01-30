@@ -1,4 +1,4 @@
-= simple_form_for [:admins, teacher] do |f|
+= simple_form_for [:admin, teacher] do |f|
   = f.input :name
   = f.input :profile
   = f.association :languages
@@ -6,4 +6,4 @@
   = f.input :password
   = f.input :password_confirmation
   = f.button :submit, class: 'btn btn-primary'
-  = link_to 'キャンセル', admins_teachers_path, class: 'btn btn-outline-primary'
+  = link_to 'キャンセル', admin_teachers_path, class: 'btn btn-outline-primary'
