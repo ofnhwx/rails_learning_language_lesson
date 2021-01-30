@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// フラッシュに bootstrap のスタイルを適用
+.alert-notice {
+  @extend .alert-info;
+}
+.alert-alert {
+  @extend .alert-warning;
+}
+.alert-error {
+  @extend .alert-danger;
+}

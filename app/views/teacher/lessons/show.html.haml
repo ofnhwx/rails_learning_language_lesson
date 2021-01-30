@@ -1,0 +1,15 @@
+%table.table.lesson{ id: @lesson.id }
+  %tbody
+    %tr.language
+      %th 言語
+      %td= @lesson.language.name
+    %tr.started_at
+      %th 開始
+      %td= l(@lesson.started_at, format: :lesson)
+    %tr.duration_minutes
+      %th 時間(分)
+      %td #{@lesson.duration_minutes} 分
+    %tr.zoom_url
+      %th Zoom URL
+      %td= link_to @lesson.zoom_url, @lesson.zoom_url, target: '_blank', rel: 'noopener'
+= link_to '戻る', teacher_lessons_path, class: 'btn btn-primary'

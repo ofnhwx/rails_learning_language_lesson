@@ -1,0 +1,15 @@
+%header.bg-primary
+  .container
+    %nav.navbar.navbar-dark.navbar-expand-lg
+      = link_to '[管理者] Online Language Lesson', admin_root_path, class: 'navbar-brand'
+      %button.navbar-toggler{ type: 'button',
+                              data: { toggle: 'collapse', target: '#navbar' },
+                              aria: { controls: 'navbar', expanded: 'false', label: 'Toggle navigation' }}
+        %span.navbar-toggler-icon
+      #navbar.collapse.navbar-collapse
+        %ul.navbar-nav.ml-auto
+          - if admin_signed_in?
+            %li.nav-item= active_link_to '講師一覧', admin_teachers_path, class: 'nav-link'
+            %li.nav-item= active_link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link', method: :delete
+          - else
+            %li.nav-item= active_link_to 'ログイン', new_admin_session_path, class: 'nav-link'

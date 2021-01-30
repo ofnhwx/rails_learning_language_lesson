@@ -1,0 +1,10 @@
+#stripe-publishable-key{ data: { value: Rails.configuration.stripe[:publishable_key] } }
+.row.products
+  - @products.each do |product|
+    .col-4.product{ id: product.id }
+      .card.mt-3
+        .card-header= product.name
+        .card-body
+          .card-text= number_to_currency(product.price_with_tax)
+          .checkout-button.btn.btn-primary{ data: { checkout_path: new_product_checkout_path(product) } }
+            購入する

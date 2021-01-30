@@ -1,0 +1,30 @@
+- if controller.action_name == 'index'
+  = search_form_for @q do |f|
+    .form-group
+      = f.label :languages_id, '言語'
+      = f.select :language_id_eq, options_from_collection_for_select(Language.all, :id, :name, params.dig(:q, :language_id_eq)),
+                 { include_blank: 'すべて' }, class: 'form-control'
+    = f.submit '検索', class: 'btn btn-primary'
+%table.table.lessons
+  %thead
+    %tr
+      %th 開始
+      %th 時間
+      %th 言語
+      %th 講師
+      %th
+  %tbody
+    - @lessons.each do |lesson|
+      %tr
+        %td= l(lesson.started_at, format: :lesson)
+        %td #{lesson.duration_minutes} 分
+        %td= lesson.language.name
+        %td= lesson.teacher.name
+        %td
+          - if controller.action_name == 'reserved'
+            - if lesson.finished?
+              .btn.btn-secondary.disabled レッスン終了
+            - else
+              = link_to lesson.zoom_url, lesson.zoom_url, target: '_blank', rel: 'noopener'
+          - else
+            = link_to '予約する', lesson_reservation_path(lesson), method: :post, class: 'btn btn-primary'

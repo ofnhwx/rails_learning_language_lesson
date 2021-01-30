@@ -1,0 +1,4 @@
+ja:
+  time:
+    formats:
+      lesson: '%Y年%m月%d日 %H時00分'
