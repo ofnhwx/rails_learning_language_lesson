@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_005309) do
+ActiveRecord::Schema.define(version: 2021_01_30_013437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,62 @@ ActiveRecord::Schema.define(version: 2021_01_30_005309) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "label", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label"], name: "index_languages_on_label", unique: true
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.datetime "started_at", null: false
+    t.string "zoom_url", null: false
+    t.bigint "language_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_lessons_on_language_id"
+    t.index ["teacher_id", "started_at"], name: "index_lessons_on_teacher_id_and_started_at", unique: true
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id"
+    t.string "caption", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "label", null: false
+    t.integer "price", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label"], name: "index_products_on_label", unique: true
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.bigint "ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_reservations_on_lesson_id", unique: true
+    t.index ["ticket_id"], name: "index_reservations_on_ticket_id", unique: true
+  end
+
+  create_table "teacher_languages", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "language_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_teacher_languages_on_language_id"
+    t.index ["teacher_id", "language_id"], name: "index_teacher_languages_on_teacher_id_and_language_id", unique: true
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -38,6 +94,13 @@ ActiveRecord::Schema.define(version: 2021_01_30_005309) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_tickets_on_order_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,4 +114,13 @@ ActiveRecord::Schema.define(version: 2021_01_30_005309) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lessons", "languages"
+  add_foreign_key "lessons", "teachers"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
+  add_foreign_key "reservations", "lessons"
+  add_foreign_key "reservations", "tickets"
+  add_foreign_key "teacher_languages", "languages"
+  add_foreign_key "teacher_languages", "teachers"
+  add_foreign_key "tickets", "orders"
 end
