@@ -2,7 +2,8 @@ class LessonsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @lessons = Lesson.reservable.default_order
+    @q = Lesson.ransack(params[:q])
+    @lessons = @q.result.reservable.default_order
   end
 
   def reserved
