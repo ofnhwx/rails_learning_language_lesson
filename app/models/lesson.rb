@@ -7,5 +7,13 @@ class Lesson < ApplicationRecord
   scope :default_order, -> { order(started_at: :asc, id: :asc) }
 
   validates :started_at, presence: true, uniqueness: { scope: :teacher }
-  validates :zoom_url, presence: true
+  validates :zoom_url, presence: true, url: { allow_blank: true }
+
+  before_validation :discard_minutes
+
+  private
+
+  def discard_minutes
+    self.started_at = started_at.advance(minutes: -started_at.min)
+  end
 end
