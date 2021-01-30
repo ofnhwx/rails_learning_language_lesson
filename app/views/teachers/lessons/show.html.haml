@@ -1,0 +1,8 @@
+.lesson{ id: @lesson.id }
+  .language
+    = @lesson.language.name
+  .started_at
+    = l(@lesson.started_at)
+  .zoom_url
+    = @lesson.zoom_url
+= link_to '戻る', teachers_lessons_path, class: 'btn btn-primary'

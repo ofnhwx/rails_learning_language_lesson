@@ -5,7 +5,7 @@ class Admins::TeachersController < Admins::ApplicationController
     @teachers = Teacher.default_order.decorate
   end
 
-    def new
+  def new
     @teacher = Teacher.new
   end
 

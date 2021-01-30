@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :teachers
+  namespace :teachers do
+    root 'lessons#index'
+    resource :profile, only: %i[show edit update]
+    resources :lessons
+  end
 
   devise_for :users
 end

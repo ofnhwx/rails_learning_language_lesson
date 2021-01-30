@@ -4,6 +4,8 @@ class Lesson < ApplicationRecord
 
   has_many :reservations
 
+  scope :default_order, -> { order(started_at: :asc, id: :asc) }
+
   validates :started_at, presence: true, uniqueness: { scope: :teacher }
   validates :zoom_url, presence: true
 end
