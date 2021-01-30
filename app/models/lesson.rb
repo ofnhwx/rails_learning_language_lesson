@@ -4,6 +4,7 @@ class Lesson < ApplicationRecord
 
   has_many :reservations
 
+  scope :reservable, -> { left_joins(:reservations).where(reservations: { id: nil }) }
   scope :default_order, -> { order(started_at: :asc, id: :asc) }
 
   validates :started_at, presence: true, uniqueness: { scope: :teacher }

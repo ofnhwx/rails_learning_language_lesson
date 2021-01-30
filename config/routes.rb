@@ -18,5 +18,9 @@ Rails.application.routes.draw do
     resources :lessons
   end
 
+  root 'lessons#index'
   devise_for :user
+  resources :lessons, only: :index do
+    resource :reservation, only: :create
+  end
 end
