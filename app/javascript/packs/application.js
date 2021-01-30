@@ -8,3 +8,4 @@ ActiveStorage.start();
 
 import 'bootstrap';
 import '../src/application.scss';
+import '../src/stripe_checkout.js';
