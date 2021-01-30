@@ -37,7 +37,11 @@ Rails.application.routes.draw do
   namespace :teacher do
     root 'lessons#index'
     resource :profile, only: %i[edit update]
-    resources :lessons
+    resources :lessons do
+      collection do
+        get :reserved
+      end
+    end
   end
 
   namespace :stripe do

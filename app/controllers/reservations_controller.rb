@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_lesson
-  before_action :set_ticketm
+  before_action :set_ticket
   before_action :require_ticket
 
   def create

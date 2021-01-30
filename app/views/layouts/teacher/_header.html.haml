@@ -1,7 +1,7 @@
 %header.bg-primary
   .container
     %nav.navbar.navbar-dark.navbar-expand-lg
-      = link_to 'Online Language Lesson', teacher_root_path, class: 'navbar-brand'
+      = link_to '[講師] Online Language Lesson', teacher_root_path, class: 'navbar-brand'
       %button.navbar-toggler{ type: 'button',
                               data: { toggle: 'collapse', target: '#navbar' },
                               aria: { controls: 'navbar', expanded: 'false', label: 'Toggle navigation' }}
@@ -10,6 +10,7 @@
         %ul.navbar-nav.ml-auto
           - if teacher_signed_in?
             %li.nav-item= active_link_to 'レッスン一覧', teacher_lessons_path, class: 'nav-link'
+            %li.nav-item= active_link_to '予約一覧', reserved_teacher_lessons_path, class: 'nav-link'
             %li.nav-item= active_link_to 'プロフィール', edit_teacher_profile_path, class: 'nav-link'
             %li.nav-item= active_link_to 'ログアウト', destroy_teacher_session_path, class: 'nav-link', method: :delete
           - else

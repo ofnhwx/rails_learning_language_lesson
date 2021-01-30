@@ -5,6 +5,11 @@ class Teacher::LessonsController < Teacher::ApplicationController
     @lessons = current_teacher.lessons.default_order
   end
 
+  def reserved
+    @lessons = current_teacher.lessons.reserved.default_order
+    render :index
+  end
+
   def show; end
 
   def new

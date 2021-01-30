@@ -4,6 +4,7 @@ class Lesson < ApplicationRecord
 
   has_one :reservation
 
+  scope :reserved, -> { left_joins(:reservation).where.not(reservation: { id: nil }) }
   scope :reservable, -> { left_joins(:reservation).where(reservation: { id: nil }) }
   scope :default_order, -> { order(started_at: :asc, id: :asc) }
 

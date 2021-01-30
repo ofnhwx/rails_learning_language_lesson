@@ -4,15 +4,18 @@
       %th 開始
       %th 言語
       %th Zoom URL
-      %th アクション
+      %th 予約
+      %th
   %tbody
     - @lessons.each do |lesson|
       %tr
         %td= l(lesson.started_at)
         %td= lesson.language.name
-        %td= lesson.zoom_url
+        %td= link_to lesson.zoom_url, lesson.zoom_url, target: '_blank', rel: 'noopener'
+        %td= lesson.reservation.blank? ? 'なし' : 'あり'
         %td
           = link_to '表示', teacher_lesson_path(lesson), class: 'btn btn-primary'
-          = link_to '編集', edit_teacher_lesson_path(lesson), class: 'btn btn-primary'
-          = link_to '削除', teacher_lesson_path(lesson), class: 'btn btn-outline-danger', method: :delete, data: { confirm: '削除しますか？' }
+          - if lesson.reservation.blank?
+            = link_to '編集', edit_teacher_lesson_path(lesson), class: 'btn btn-primary'
+            = link_to '削除', teacher_lesson_path(lesson), class: 'btn btn-outline-danger', method: :delete, data: { confirm: '削除しますか？' }
 = link_to '登録', new_teacher_lesson_path, class: 'btn btn-primary'
