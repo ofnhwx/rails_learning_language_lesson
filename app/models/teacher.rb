@@ -6,5 +6,9 @@ class Teacher < ApplicationRecord
   has_many :teacher_languages
   has_many :languages, through: :teacher_languages
 
+  has_one_attached :image
+
   scope :default_order, -> { order(name: :asc, id: :asc) }
+
+  validates :name, presence: true
 end

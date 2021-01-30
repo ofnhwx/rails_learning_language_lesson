@@ -9,6 +9,7 @@
       #navbar.collapse.navbar-collapse
         %ul.navbar-nav.ml-auto
           - if admin_signed_in?
+            %li.nav-item= active_link_to '講師一覧', admin_teachers_path, class: 'nav-link'
             %li.nav-item= active_link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link', method: :delete
           - else
             %li.nav-item= active_link_to 'ログイン', new_admin_session_path, class: 'nav-link'

@@ -41,6 +41,6 @@ class Admin::TeachersController < Admin::ApplicationController
 
   def teacher_params
     params.require(:teacher)
-          .permit(:name, :email, :password, :password_confirmation, language_ids: [])
+          .permit(:image, :name, :profile, :email, :password, :password_confirmation, language_ids: [])
   end
 end

@@ -1,4 +1,7 @@
 = simple_form_for [:admin, teacher] do |f|
+  - if teacher.image.attached?
+    = image_tag teacher.image
+  = f.input :image, as: :file
   = f.input :name
   = f.input :profile
   = f.association :languages
